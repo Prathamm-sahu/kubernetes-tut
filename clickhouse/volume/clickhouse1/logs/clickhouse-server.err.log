@@ -1,0 +1,278 @@
+2025.08.06 04:58:31.555009 [ 1 ] {} <Warning> Application: Listen [::]:9009 failed: Poco::Exception. Code: 1000, e.code() = 0, DNS error: EAI: Address family for hostname not supported (version 25.7.1.3997 (official build)). If it is an IPv6 or IPv4 address and your host has disabled IPv6 or IPv4, then consider to specify not disabled IPv4 or IPv6 address to listen in <listen_host> element of configuration file. Example for disabled IPv6: <listen_host>0.0.0.0</listen_host> . Example for disabled IPv4: <listen_host>::</listen_host>
+2025.08.06 04:58:31.586661 [ 1 ] {} <Warning> Access(local_directory): File /var/lib/clickhouse/access/users.list doesn't exist
+2025.08.06 04:58:31.586870 [ 1 ] {} <Warning> Access(local_directory): Recovering lists in directory /var/lib/clickhouse/access/
+2025.08.06 04:58:31.609105 [ 1 ] {} <Warning> Context: Linux transparent hugepages are set to "always". Check /sys/kernel/mm/transparent_hugepage/enabled
+2025.08.06 04:58:31.609511 [ 1 ] {} <Warning> Context: Delay accounting is not enabled, OSIOWaitMicroseconds will not be gathered. You can enable it using `sudo sh -c 'echo 1 > /proc/sys/kernel/task_delayacct'` or by using sysctl.
+2025.08.06 04:58:31.736777 [ 705 ] {} <Error> void DB::AsyncLoader::worker(Pool &): std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build))
+2025.08.06 04:58:31.835139 [ 1 ] {} <Error> Application: Caught exception while loading metadata: Code: 722. DB::Exception: Waited job failed: Code: 695. DB::Exception: Load job 'startup Atomic database system' failed: std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build)). (ASYNC_LOAD_FAILED) (version 25.7.1.3997 (official build)). (ASYNC_LOAD_WAIT_FAILED), Stack trace (when copying this message, always include the lines below):
+
+0. DB::Exception::Exception(DB::Exception::MessageMasked&&, int, bool) @ 0x00000000127c721b
+1. DB::Exception::Exception(PreformattedMessage&&, int) @ 0x000000000bfd62cc
+2. DB::Exception::Exception<String>(int, FormatStringHelperImpl<std::type_identity<String>::type>, String&&) @ 0x000000000bfd5feb
+3. DB::AsyncLoader::wait(std::shared_ptr<DB::LoadJob> const&, bool) @ 0x0000000012ae52d1
+4. DB::waitLoad(unsigned long, std::vector<std::shared_ptr<DB::LoadTask>, std::allocator<std::shared_ptr<DB::LoadTask>>> const&, bool) @ 0x0000000012ac8f1e
+5. DB::loadMetadataSystem(std::shared_ptr<DB::Context>, bool) @ 0x00000000170c36de
+6. DB::Server::main(std::vector<String, std::allocator<String>> const&) @ 0x0000000012b1338a
+7. Poco::Util::Application::run() @ 0x000000001d8bb466
+8. DB::Server::run() @ 0x0000000012afc290
+9. mainEntryClickHouseServer(int, char**) @ 0x0000000012af9273
+10. main @ 0x000000000bfd1b5d
+11. ? @ 0x0000000000029d90
+12. ? @ 0x0000000000029e40
+13. _start @ 0x00000000072b402e
+ (version 25.7.1.3997 (official build))
+2025.08.06 04:58:32.019142 [ 1 ] {} <Error> Application: Code: 722. DB::Exception: Waited job failed: Code: 695. DB::Exception: Load job 'startup Atomic database system' failed: std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build)). (ASYNC_LOAD_FAILED) (version 25.7.1.3997 (official build)). (ASYNC_LOAD_WAIT_FAILED), Stack trace (when copying this message, always include the lines below):
+
+0. DB::Exception::Exception(DB::Exception::MessageMasked&&, int, bool) @ 0x00000000127c721b
+1. DB::Exception::Exception(PreformattedMessage&&, int) @ 0x000000000bfd62cc
+2. DB::Exception::Exception<String>(int, FormatStringHelperImpl<std::type_identity<String>::type>, String&&) @ 0x000000000bfd5feb
+3. DB::AsyncLoader::wait(std::shared_ptr<DB::LoadJob> const&, bool) @ 0x0000000012ae52d1
+4. DB::waitLoad(unsigned long, std::vector<std::shared_ptr<DB::LoadTask>, std::allocator<std::shared_ptr<DB::LoadTask>>> const&, bool) @ 0x0000000012ac8f1e
+5. DB::loadMetadataSystem(std::shared_ptr<DB::Context>, bool) @ 0x00000000170c36de
+6. DB::Server::main(std::vector<String, std::allocator<String>> const&) @ 0x0000000012b1338a
+7. Poco::Util::Application::run() @ 0x000000001d8bb466
+8. DB::Server::run() @ 0x0000000012afc290
+9. mainEntryClickHouseServer(int, char**) @ 0x0000000012af9273
+10. main @ 0x000000000bfd1b5d
+11. ? @ 0x0000000000029d90
+12. ? @ 0x0000000000029e40
+13. _start @ 0x00000000072b402e
+ (version 25.7.1.3997 (official build))
+2025.08.06 05:00:44.637440 [ 1 ] {} <Warning> Application: Listen [::]:9009 failed: Poco::Exception. Code: 1000, e.code() = 0, DNS error: EAI: Address family for hostname not supported (version 25.7.1.3997 (official build)). If it is an IPv6 or IPv4 address and your host has disabled IPv6 or IPv4, then consider to specify not disabled IPv4 or IPv6 address to listen in <listen_host> element of configuration file. Example for disabled IPv6: <listen_host>0.0.0.0</listen_host> . Example for disabled IPv4: <listen_host>::</listen_host>
+2025.08.06 05:00:44.708702 [ 1 ] {} <Warning> Context: Linux transparent hugepages are set to "always". Check /sys/kernel/mm/transparent_hugepage/enabled
+2025.08.06 05:00:44.722729 [ 1 ] {} <Warning> Context: Delay accounting is not enabled, OSIOWaitMicroseconds will not be gathered. You can enable it using `sudo sh -c 'echo 1 > /proc/sys/kernel/task_delayacct'` or by using sysctl.
+2025.08.06 05:00:44.850494 [ 714 ] {} <Error> void DB::AsyncLoader::worker(Pool &): std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build))
+2025.08.06 05:00:44.934455 [ 1 ] {} <Error> Application: Caught exception while loading metadata: Code: 722. DB::Exception: Waited job failed: Code: 695. DB::Exception: Load job 'startup Atomic database system' failed: std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build)). (ASYNC_LOAD_FAILED) (version 25.7.1.3997 (official build)). (ASYNC_LOAD_WAIT_FAILED), Stack trace (when copying this message, always include the lines below):
+
+0. DB::Exception::Exception(DB::Exception::MessageMasked&&, int, bool) @ 0x00000000127c721b
+1. DB::Exception::Exception(PreformattedMessage&&, int) @ 0x000000000bfd62cc
+2. DB::Exception::Exception<String>(int, FormatStringHelperImpl<std::type_identity<String>::type>, String&&) @ 0x000000000bfd5feb
+3. DB::AsyncLoader::wait(std::shared_ptr<DB::LoadJob> const&, bool) @ 0x0000000012ae52d1
+4. DB::waitLoad(unsigned long, std::vector<std::shared_ptr<DB::LoadTask>, std::allocator<std::shared_ptr<DB::LoadTask>>> const&, bool) @ 0x0000000012ac8f1e
+5. DB::loadMetadataSystem(std::shared_ptr<DB::Context>, bool) @ 0x00000000170c36de
+6. DB::Server::main(std::vector<String, std::allocator<String>> const&) @ 0x0000000012b1338a
+7. Poco::Util::Application::run() @ 0x000000001d8bb466
+8. DB::Server::run() @ 0x0000000012afc290
+9. mainEntryClickHouseServer(int, char**) @ 0x0000000012af9273
+10. main @ 0x000000000bfd1b5d
+11. ? @ 0x0000000000029d90
+12. ? @ 0x0000000000029e40
+13. _start @ 0x00000000072b402e
+ (version 25.7.1.3997 (official build))
+2025.08.06 05:00:45.047044 [ 1 ] {} <Error> Application: Code: 722. DB::Exception: Waited job failed: Code: 695. DB::Exception: Load job 'startup Atomic database system' failed: std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build)). (ASYNC_LOAD_FAILED) (version 25.7.1.3997 (official build)). (ASYNC_LOAD_WAIT_FAILED), Stack trace (when copying this message, always include the lines below):
+
+0. DB::Exception::Exception(DB::Exception::MessageMasked&&, int, bool) @ 0x00000000127c721b
+1. DB::Exception::Exception(PreformattedMessage&&, int) @ 0x000000000bfd62cc
+2. DB::Exception::Exception<String>(int, FormatStringHelperImpl<std::type_identity<String>::type>, String&&) @ 0x000000000bfd5feb
+3. DB::AsyncLoader::wait(std::shared_ptr<DB::LoadJob> const&, bool) @ 0x0000000012ae52d1
+4. DB::waitLoad(unsigned long, std::vector<std::shared_ptr<DB::LoadTask>, std::allocator<std::shared_ptr<DB::LoadTask>>> const&, bool) @ 0x0000000012ac8f1e
+5. DB::loadMetadataSystem(std::shared_ptr<DB::Context>, bool) @ 0x00000000170c36de
+6. DB::Server::main(std::vector<String, std::allocator<String>> const&) @ 0x0000000012b1338a
+7. Poco::Util::Application::run() @ 0x000000001d8bb466
+8. DB::Server::run() @ 0x0000000012afc290
+9. mainEntryClickHouseServer(int, char**) @ 0x0000000012af9273
+10. main @ 0x000000000bfd1b5d
+11. ? @ 0x0000000000029d90
+12. ? @ 0x0000000000029e40
+13. _start @ 0x00000000072b402e
+ (version 25.7.1.3997 (official build))
+2025.08.06 05:05:27.308415 [ 1 ] {} <Warning> Application: Listen [::]:9009 failed: Poco::Exception. Code: 1000, e.code() = 0, DNS error: EAI: Address family for hostname not supported (version 25.7.1.3997 (official build)). If it is an IPv6 or IPv4 address and your host has disabled IPv6 or IPv4, then consider to specify not disabled IPv4 or IPv6 address to listen in <listen_host> element of configuration file. Example for disabled IPv6: <listen_host>0.0.0.0</listen_host> . Example for disabled IPv4: <listen_host>::</listen_host>
+2025.08.06 05:05:27.393885 [ 1 ] {} <Warning> Context: Linux transparent hugepages are set to "always". Check /sys/kernel/mm/transparent_hugepage/enabled
+2025.08.06 05:05:27.404721 [ 1 ] {} <Warning> Context: Delay accounting is not enabled, OSIOWaitMicroseconds will not be gathered. You can enable it using `sudo sh -c 'echo 1 > /proc/sys/kernel/task_delayacct'` or by using sysctl.
+2025.08.06 05:05:27.416564 [ 709 ] {} <Error> void DB::AsyncLoader::worker(Pool &): std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build))
+2025.08.06 05:05:27.420664 [ 1 ] {} <Error> Application: Caught exception while loading metadata: Code: 722. DB::Exception: Waited job failed: Code: 695. DB::Exception: Load job 'startup Atomic database system' failed: std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build)). (ASYNC_LOAD_FAILED) (version 25.7.1.3997 (official build)). (ASYNC_LOAD_WAIT_FAILED), Stack trace (when copying this message, always include the lines below):
+
+0. DB::Exception::Exception(DB::Exception::MessageMasked&&, int, bool) @ 0x00000000127c721b
+1. DB::Exception::Exception(PreformattedMessage&&, int) @ 0x000000000bfd62cc
+2. DB::Exception::Exception<String>(int, FormatStringHelperImpl<std::type_identity<String>::type>, String&&) @ 0x000000000bfd5feb
+3. DB::AsyncLoader::wait(std::shared_ptr<DB::LoadJob> const&, bool) @ 0x0000000012ae52d1
+4. DB::waitLoad(unsigned long, std::vector<std::shared_ptr<DB::LoadTask>, std::allocator<std::shared_ptr<DB::LoadTask>>> const&, bool) @ 0x0000000012ac8f1e
+5. DB::loadMetadataSystem(std::shared_ptr<DB::Context>, bool) @ 0x00000000170c36de
+6. DB::Server::main(std::vector<String, std::allocator<String>> const&) @ 0x0000000012b1338a
+7. Poco::Util::Application::run() @ 0x000000001d8bb466
+8. DB::Server::run() @ 0x0000000012afc290
+9. mainEntryClickHouseServer(int, char**) @ 0x0000000012af9273
+10. main @ 0x000000000bfd1b5d
+11. ? @ 0x0000000000029d90
+12. ? @ 0x0000000000029e40
+13. _start @ 0x00000000072b402e
+ (version 25.7.1.3997 (official build))
+2025.08.06 05:05:27.690376 [ 1 ] {} <Error> Application: Code: 722. DB::Exception: Waited job failed: Code: 695. DB::Exception: Load job 'startup Atomic database system' failed: std::exception. Code: 1001, type: std::__1::filesystem::filesystem_error, e.what() = filesystem error: in create_directories: Permission denied ["/var/lib/clickhouse/data/system"], Stack trace (when copying this message, always include the lines below):
+
+0. std::system_error::system_error(std::error_code, String const&) @ 0x000000001e5a0c17
+1. std::filesystem::filesystem_error::filesystem_error[abi:ne190107](String const&, std::filesystem::path const&, std::error_code) @ 0x000000001288f9ff
+2. void std::filesystem::__throw_filesystem_error[abi:ne190107]<String&, std::filesystem::path const&, std::error_code const&>(String&, std::filesystem::path const&, std::error_code const&) @ 0x000000001e5585ad
+3. std::filesystem::detail::ErrorHandler<bool>::report(std::error_code const&) const @ 0x000000001e55b542
+4. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc8f
+5. std::filesystem::__create_directories(std::filesystem::path const&, std::error_code*) @ 0x000000001e55bc60
+6. DB::DiskLocal::createDirectories(String const&) @ 0x00000000160accfa
+7. void std::__function::__policy_invoker<void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::DatabaseAtomic::startupDatabaseAsync(DB::AsyncLoader&, std::unordered_set<std::shared_ptr<DB::LoadJob>, std::hash<std::shared_ptr<DB::LoadJob>>, std::equal_to<std::shared_ptr<DB::LoadJob>>, std::allocator<std::shared_ptr<DB::LoadJob>>>, DB::LoadingStrictnessLevel)::$_0, void (DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&)>>(std::__function::__policy_storage const*, DB::AsyncLoader&, std::shared_ptr<DB::LoadJob> const&) @ 0x0000000015eb941a
+8. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<DB::AsyncLoader::spawn(DB::AsyncLoader::Pool&, std::unique_lock<std::mutex>&)::$_0, void ()>>(std::__function::__policy_storage const*) @ 0x0000000012aeb704
+9. ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::worker() @ 0x000000001290a58b
+10. void std::__function::__policy_invoker<void ()>::__call_impl[abi:ne190107]<std::__function::__default_alloc_func<ThreadFromGlobalPoolImpl<false, true>::ThreadFromGlobalPoolImpl<void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*>(void (ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool::*&&)(), ThreadPoolImpl<ThreadFromGlobalPoolImpl<false, true>>::ThreadFromThreadPool*&&)::'lambda'(), void ()>>(std::__function::__policy_storage const*) @ 0x00000000129111c6
+11. ThreadPoolImpl<std::thread>::ThreadFromThreadPool::worker() @ 0x0000000012907792
+12. void* std::__thread_proxy[abi:ne190107]<std::tuple<std::unique_ptr<std::__thread_struct, std::default_delete<std::__thread_struct>>, void (ThreadPoolImpl<std::thread>::ThreadFromThreadPool::*)(), ThreadPoolImpl<std::thread>::ThreadFromThreadPool*>>(void*) @ 0x000000001290ec9a
+13. ? @ 0x0000000000094ac3
+14. ? @ 0x0000000000125a04
+
+Cannot print extra info for Poco::Exception (version 25.7.1.3997 (official build)). (ASYNC_LOAD_FAILED) (version 25.7.1.3997 (official build)). (ASYNC_LOAD_WAIT_FAILED), Stack trace (when copying this message, always include the lines below):
+
+0. DB::Exception::Exception(DB::Exception::MessageMasked&&, int, bool) @ 0x00000000127c721b
+1. DB::Exception::Exception(PreformattedMessage&&, int) @ 0x000000000bfd62cc
+2. DB::Exception::Exception<String>(int, FormatStringHelperImpl<std::type_identity<String>::type>, String&&) @ 0x000000000bfd5feb
+3. DB::AsyncLoader::wait(std::shared_ptr<DB::LoadJob> const&, bool) @ 0x0000000012ae52d1
+4. DB::waitLoad(unsigned long, std::vector<std::shared_ptr<DB::LoadTask>, std::allocator<std::shared_ptr<DB::LoadTask>>> const&, bool) @ 0x0000000012ac8f1e
+5. DB::loadMetadataSystem(std::shared_ptr<DB::Context>, bool) @ 0x00000000170c36de
+6. DB::Server::main(std::vector<String, std::allocator<String>> const&) @ 0x0000000012b1338a
+7. Poco::Util::Application::run() @ 0x000000001d8bb466
+8. DB::Server::run() @ 0x0000000012afc290
+9. mainEntryClickHouseServer(int, char**) @ 0x0000000012af9273
+10. main @ 0x000000000bfd1b5d
+11. ? @ 0x0000000000029d90
+12. ? @ 0x0000000000029e40
+13. _start @ 0x00000000072b402e
+ (version 25.7.1.3997 (official build))

@@ -295,9 +295,9 @@ data:
 
     exporters:
       otlphttp:
-        endpoint: 'https://otel.kloudmate.com:4318'
+        endpoint: 'https://otel.kloudmate.dev:4318'
         headers:
-          Authorization: sk_V7DlJNkfgUXURrwBOHFmZrMA  #add the required auth key
+          Authorization: sk_8bTaz5fDjgMwm2wCyffzziWa  #add the required auth key
         timeout: 10s
         retry_on_failure:
           enabled: true
