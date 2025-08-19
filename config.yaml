@@ -294,10 +294,12 @@ data:
 
 
     exporters:
+      debug:
+        verbosity: normal
       otlphttp:
-        endpoint: 'https://otel.kloudmate.dev:4318'
+        endpoint: 'https://otel.kloudmate.com:4318'
         headers:
-          Authorization: sk_8bTaz5fDjgMwm2wCyffzziWa  #add the required auth key
+          Authorization: sk_iyilnCH59pgDAdZ5eGNmqead  #add the required auth key
         timeout: 10s
         retry_on_failure:
           enabled: true
@@ -306,7 +308,7 @@ data:
         metrics:
           receivers: [prometheus]
           processors: [batch, k8sattributes, resourcedetection, attributes/metrics]
-          exporters: [otlphttp]
+          exporters: [otlphttp, debug]
         logs:
           receivers: [filelog, k8s_events]
           processors: [batch, k8sattributes, resourcedetection, attributes/logs]
