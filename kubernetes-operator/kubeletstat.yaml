@@ -147,10 +147,17 @@ data:
     exporters:
       debug: 
         verbosity: normal
-      otlphttp:
+      otlphttp/kloudmate:
         endpoint: "https://otel.kloudmate.com:4318"
         headers:
           Authorization: sk_iyilnCH59pgDAdZ5eGNmqead #add the required auth key
+        timeout: 10s
+        retry_on_failure:
+          enabled: true
+      otlphttp/signoz:
+        endpoint: "https://ingest.us.signoz.cloud:443"
+        headers:
+          Authorization: "signoz-ingestion-key": 4de6e063-2530-4747-ae53-9e99dc51b4f5
         timeout: 10s
         retry_on_failure:
           enabled: true
@@ -160,7 +167,7 @@ data:
         metrics:
           receivers: [kubeletstats, k8s_cluster]
           processors: [batch, k8sattributes, resourcedetection, attributes/metrics]
-          exporters: [debug, otlphttp]
+          exporters: [debug, otlphttp/kloudmate, otlphttp/signoz]
 
 ---
 apiVersion: apps/v1
